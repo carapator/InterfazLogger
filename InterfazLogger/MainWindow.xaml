@@ -1,0 +1,119 @@
+﻿<Window x:Class="InterfazLogger.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InterfazLogger"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="HabitLogger" Height="500" Width="650"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Formulario de entrada -->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Tipo de hábito -->
+            <TextBlock Grid.Row="0" Grid.Column="0"
+                       Text="Tipo de hábito:"
+                       FontSize="14"
+                       FontWeight="SemiBold"
+                       Margin="0,0,0,5"
+                       VerticalAlignment="Center"/>
+            <TextBox Grid.Row="0" Grid.Column="1"
+                     x:Name="txtTipoHabito"
+                     FontSize="14"
+                     Padding="8,5"
+                     Margin="0,0,20,0"
+                     VerticalAlignment="Center"
+                     ToolTip="Ej: Vasos de agua, Kilómetros corrido, Libros leídos"/>
+
+            <!-- Fecha -->
+            <TextBlock Grid.Row="0" Grid.Column="2"
+                       Text="Fecha:"
+                       FontSize="14"
+                       FontWeight="SemiBold"
+                       Margin="20,0,0,5"
+                       VerticalAlignment="Center"/>
+            <DatePicker Grid.Row="0" Grid.Column="3"
+                        x:Name="dpFecha"
+                        FontSize="14"
+                        Padding="8,5"
+                        VerticalAlignment="Center"
+                        SelectedDate="{x:Static sys:DateTime.Today}"/>
+
+            <!-- Cantidad -->
+            <TextBlock Grid.Row="1" Grid.Column="0"
+                       Text="Cantidad:"
+                       FontSize="14"
+                       FontWeight="SemiBold"
+                       Margin="0,15,0,5"
+                       VerticalAlignment="Center"/>
+            <TextBox Grid.Row="1" Grid.Column="1"
+                     x:Name="txtCantidad"
+                     FontSize="14"
+                     Padding="8,5"
+                     Margin="0,15,20,0"
+                     VerticalAlignment="Center"
+                     Width="100"
+                     HorizontalAlignment="Left"
+                     ToolTip="Número entre 1 y 100"
+                     PreviewTextInput="txtCantidad_PreviewTextInput"/>
+
+            <!-- Botón Insertar -->
+            <Button Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2"
+                    x:Name="btnInsertar"
+                    Content="Registrar hábito"
+                    FontSize="14"
+                    FontWeight="SemiBold"
+                    Padding="20,10"
+                    Margin="20,15,0,0"
+                    HorizontalAlignment="Left"
+                    Click="btnInsertar_Click"
+                    Height="40"/>
+        </Grid>
+
+        <!-- Lista de registros -->
+        <Grid Grid.Row="1" Margin="0,20,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0"
+                       Text="Registros de hábitos"
+                       FontSize="18"
+                       FontWeight="SemiBold"
+                       Margin="0,0,0,10"/>
+
+            <ListView Grid.Row="1"
+                      x:Name="lvRegistros"
+                      BorderThickness="1">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding Id}"/>
+                        <GridViewColumn Header="Tipo de hábito" Width="200" DisplayMemberBinding="{Binding Tipo}"/>
+                        <GridViewColumn Header="Fecha" Width="120" DisplayMemberBinding="{Binding Fecha, StringFormat='dd/MM/yyyy'}"/>
+                        <GridViewColumn Header="Cantidad" Width="100" DisplayMemberBinding="{Binding Cantidad}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+    </Grid>
+</Window>
