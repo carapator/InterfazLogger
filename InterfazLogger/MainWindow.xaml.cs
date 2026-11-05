@@ -150,6 +150,25 @@ public partial class MainWindow : Window
         e.Handled = regex.IsMatch(e.Text);
     }
 
+    // Manejar tecla Escape para cerrar la aplicación
+    private void Window_KeyDown(object sender, KeyEventArgs e)
+    {
+        if (e.Key == Key.Escape)
+        {
+            Close();
+        }
+    }
+
+    // Abrir ventana de detalle al hacer doble clic en un hábito
+    private void lvRegistros_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+    {
+        if (lvRegistros.SelectedItem is Habito habito)
+        {
+            var detailWindow = new DetailWindow(habito);
+            detailWindow.Show();
+        }
+    }
+
     protected override void OnClosed(EventArgs e)
     {
         LogUsuario.Registrar("Aplicación cerrada");

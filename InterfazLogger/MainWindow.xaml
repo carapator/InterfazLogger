@@ -7,7 +7,8 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="HabitLogger" Height="500" Width="650"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        KeyDown="Window_KeyDown">
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -104,7 +105,8 @@
 
             <ListView Grid.Row="1"
                       x:Name="lvRegistros"
-                      BorderThickness="1">
+                      BorderThickness="1"
+                      MouseDoubleClick="lvRegistros_MouseDoubleClick">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding Id}"/>
