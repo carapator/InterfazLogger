@@ -16,8 +16,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Formulario de entrada -->
-        <Grid Grid.Row="0">
+                <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
@@ -30,8 +29,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <!-- Tipo de hábito -->
-            <TextBlock Grid.Row="0" Grid.Column="0"
+                        <TextBlock Grid.Row="0" Grid.Column="0"
                        Text="Tipo de hábito:"
                        FontSize="14"
                        FontWeight="SemiBold"
@@ -45,8 +43,7 @@
                      VerticalAlignment="Center"
                      ToolTip="Ej: Vasos de agua, Kilómetros corrido, Libros leídos"/>
 
-            <!-- Fecha -->
-            <TextBlock Grid.Row="0" Grid.Column="2"
+                        <TextBlock Grid.Row="0" Grid.Column="2"
                        Text="Fecha:"
                        FontSize="14"
                        FontWeight="SemiBold"
@@ -59,8 +56,7 @@
                         VerticalAlignment="Center"
                         SelectedDate="{x:Static sys:DateTime.Today}"/>
 
-            <!-- Cantidad -->
-            <TextBlock Grid.Row="1" Grid.Column="0"
+                        <TextBlock Grid.Row="1" Grid.Column="0"
                        Text="Cantidad:"
                        FontSize="14"
                        FontWeight="SemiBold"
@@ -77,8 +73,7 @@
                      ToolTip="Número entre 1 y 100"
                      PreviewTextInput="txtCantidad_PreviewTextInput"/>
 
-            <!-- Botón Insertar -->
-            <Button Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2"
+                        <Button Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2"
                     x:Name="btnInsertar"
                     Content="Registrar hábito"
                     FontSize="14"
@@ -90,8 +85,7 @@
                     Height="40"/>
         </Grid>
 
-        <!-- Lista de registros -->
-        <Grid Grid.Row="1" Margin="0,20,0,0">
+                <Grid Grid.Row="1" Margin="0,20,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>

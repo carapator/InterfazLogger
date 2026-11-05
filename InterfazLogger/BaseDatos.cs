@@ -46,8 +46,7 @@ public static class BaseDatos
         }
     }
 
-    // Devuelve las filas afectadas, o -1 si hubo un error
-    public static int EjecutarComando(string sql, params (string Nombre, object Valor)[] parametros)
+        public static int EjecutarComando(string sql, params (string Nombre, object Valor)[] parametros)
     {
         try
         {
@@ -66,8 +65,7 @@ public static class BaseDatos
         }
     }
 
-    // "convertir" transforma cada fila en un objeto T. Si hay error devuelve una lista vacía
-    public static List<T> EjecutarConsulta<T>(string sql, Func<SqliteDataReader, T> convertir,
+        public static List<T> EjecutarConsulta<T>(string sql, Func<SqliteDataReader, T> convertir,
                                               params (string Nombre, object Valor)[] parametros)
     {
         var resultado = new List<T>();
@@ -105,7 +103,6 @@ public static class BaseDatos
     private static void ManejarError(string origen, Exception ex)
     {
         RegistroErrores.Registrar(origen, ex);
-        // En WPF usamos MessageBox en lugar de Consola
-        System.Windows.MessageBox.Show($"Error con la base de datos (los detalles están en la tabla 'errores').\n{ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                System.Windows.MessageBox.Show($"Error con la base de datos (los detalles están en la tabla 'errores').\n{ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
     }
 }

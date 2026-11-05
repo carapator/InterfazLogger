@@ -13,9 +13,6 @@ using System.Windows.Shapes;
 
 namespace InterfazLogger;
 
-/// <summary>
-/// Interaction logic for MainWindow.xaml
-/// </summary>
 public partial class MainWindow : Window
 {
     private readonly ObservableCollection<Habito> _registros = new();
@@ -24,13 +21,10 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
 
-        // Inicializar base de datos al cargar
         Loaded += MainWindow_Loaded;
 
-        // Asignar la lista observable al ListView
         lvRegistros.ItemsSource = _registros;
 
-        // Establecer fecha por defecto a hoy
         dpFecha.SelectedDate = DateTime.Today;
     }
 
@@ -38,7 +32,6 @@ public partial class MainWindow : Window
     {
         try
         {
-            // Inicializar base de datos
             if (BaseDatos.Inicializar())
             {
                 LogUsuario.Registrar("Aplicación iniciada");
@@ -81,7 +74,6 @@ public partial class MainWindow : Window
     {
         try
         {
-            // Validar tipo de hábito
             string tipo = txtTipoHabito.Text.Trim();
             if (string.IsNullOrWhiteSpace(tipo))
             {
@@ -90,7 +82,6 @@ public partial class MainWindow : Window
                 return;
             }
 
-            // Validar fecha
             if (dpFecha.SelectedDate == null)
             {
                 MessageBox.Show("Debe seleccionar una fecha.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -99,7 +90,6 @@ public partial class MainWindow : Window
             }
             DateTime fecha = dpFecha.SelectedDate.Value;
 
-            // Validar cantidad
             if (!int.TryParse(txtCantidad.Text.Trim(), out int cantidad))
             {
                 MessageBox.Show("La cantidad debe ser un número.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -114,7 +104,6 @@ public partial class MainWindow : Window
                 return;
             }
 
-            // Insertar en base de datos
             bool correcto = HabitoRepositorio.Insertar(tipo, fecha, cantidad);
 
             if (correcto)
@@ -122,13 +111,11 @@ public partial class MainWindow : Window
                 string mensaje = $"Registro insertado: {tipo} - {fecha:dd/MM/yyyy} - {cantidad}";
                 LogUsuario.Registrar(mensaje);
 
-                // Limpiar formulario
                 txtTipoHabito.Clear();
                 txtCantidad.Clear();
                 dpFecha.SelectedDate = DateTime.Today;
                 txtTipoHabito.Focus();
 
-                // Recargar registros
                 CargarRegistros();
             }
             else
@@ -143,14 +130,12 @@ public partial class MainWindow : Window
         }
     }
 
-    // Solo permitir números en el TextBox de cantidad
     private void txtCantidad_PreviewTextInput(object sender, TextCompositionEventArgs e)
     {
         Regex regex = new Regex("[^0-9]+");
         e.Handled = regex.IsMatch(e.Text);
     }
 
-    // Manejar tecla Escape para cerrar la aplicación
     private void Window_KeyDown(object sender, KeyEventArgs e)
     {
         if (e.Key == Key.Escape)
@@ -159,7 +144,6 @@ public partial class MainWindow : Window
         }
     }
 
-    // Abrir ventana de detalle al hacer doble clic en un hábito
     private void lvRegistros_MouseDoubleClick(object sender, MouseButtonEventArgs e)
     {
         if (lvRegistros.SelectedItem is Habito habito)

@@ -6,9 +6,7 @@ public static class RegistroErrores
 {
     public static void Registrar(string origen, Exception ex)
     {
-        // No se usa BaseDatos.EjecutarComando: si fallara, llamaría de nuevo a este
-        // método y se produciría un bucle infinito
-        try
+                        try
         {
             using var conexion = BaseDatos.CrearConexion();
             using var comando = conexion.CreateCommand();
